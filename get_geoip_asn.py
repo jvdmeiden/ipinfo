@@ -13,9 +13,7 @@ for i in range(1, n):
    curINT = 256*(256*(256*int(curIP[0])+int(curIP[1]))+int(curIP[2]))+int(curIP[3])
    oldPos = 0;
 
-   # while (curMax - curMin) > 1 :
    while curPos != oldPos :
-     # print(str(curMin) +  " " + str(curPos) +  " " + str(curMax))
      oldPos = curPos
      curVal = int(connection.execute('SELECT * FROM geoip WHERE rowid = ' +  str(curPos)).fetchall()[0][0])
      if curVal < curINT:
@@ -26,8 +24,6 @@ for i in range(1, n):
        curPos = int((curMin + curPos)/2)
    
    print(connection.execute('SELECT country, province, city, latitude, longitude FROM geoip WHERE rowid = ' +  str(curMin)).fetchall())
-
-
 
 numBlocks = int(connection.execute('SELECT count(*) FROM asn').fetchall()[0][0])
 
@@ -40,7 +36,6 @@ for i in range(1, n):
    curINT = 256*(256*(256*int(curIP[0])+int(curIP[1]))+int(curIP[2]))+int(curIP[3])
    curVal = int(connection.execute('SELECT * FROM asn WHERE rowid = ' +  str(curPos)).fetchall()[0][0])
 
-   # while (curMax - curMin) > 1 :
    while curPos != oldPos :
      oldPos = curPos
      curVal = int(connection.execute('SELECT * FROM asn WHERE rowid = ' +  str(curPos)).fetchall()[0][0])
